@@ -1,33 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const categories = [
+    {
+      id: 1,
+      title: 'Plants',
+      imageUrl: 'https://example.com/fruit-trees.jpg',
+    },
+    {
+      id: 2,
+      title: 'Pots',
+      imageUrl: 'https://example.com/pots.jpg',
+    },
+    {
+      id: 3,
+      title: 'Gardening Tools',
+      imageUrl: 'https://example.com/gardening-tools.jpg',
+    },
+    {
+      id: 4,
+      title: 'Soil & Fertilizers',
+      imageUrl: 'https://example.com/soil-fertilizers.jpg',
+    },
+    {
+      id: 5,
+      title: 'Seeds',
+      imageUrl: 'https://example.com/seeds.jpg',
+    }
+  ]
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='categories-container'>
+        {
+          categories.map((category) => {
+            return <div key={category.id} className='category-container'>
+              {/*<img src={category.imageUrl} alt={category.title} /> */}
+              <div className='category-body-container'>
+                <h2>{category.title}</h2>
+                <p>Shop</p>
+              </div>
+            </div>
+            }
+          )
+        }
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
