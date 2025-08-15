@@ -1,4 +1,5 @@
 import './App.css'
+import Directory from './components/directory/directory.component'
 
 function App() {
 
@@ -32,21 +33,7 @@ function App() {
 
   return (
     <>
-      <div className='categories-container'>
-        {
-          categories.map((category) => {
-            return <div key={category.id} className='category-container'>
-              {/*<img src={category.imageUrl} alt={category.title} /> */}
-              <div className='category-body-container'>
-                <h2>{category.title}</h2>
-                <p>Shop</p>
-              </div>
-            </div>
-            }
-          )
-        }
-
-      </div>
+      <Directory categories={categories} />
     </>
   )
 }
