@@ -1,20 +1,9 @@
 import Home from './components/routes/home.component'
-import { Routes, Route, Outlet } from 'react-router'
+import Navigation from './components/navigation/navigation.component'
+import { Routes, Route }from 'react-router'
 import './App.css'
 
-function Navbar() {
-  return (
-    <nav>
-      <h1>Plant E-commerce</h1>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/plants">Plants</a></li>
-        {/* Add more navigation links as needed */}
-      </ul>
-      <Outlet />
-    </nav>
-  )
-}
+
 
 function Plants(){
   return (
@@ -29,7 +18,7 @@ function Plants(){
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navbar />}>
+      <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="plants" element={<Plants />} />
       </Route>
