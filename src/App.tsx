@@ -1,40 +1,39 @@
+import Home from './components/routes/home.component'
+import { Routes, Route, Outlet } from 'react-router'
 import './App.css'
-import Directory from './components/directory/directory.component'
+
+function Navbar() {
+  return (
+    <nav>
+      <h1>Plant E-commerce</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/plants">Plants</a></li>
+        {/* Add more navigation links as needed */}
+      </ul>
+      <Outlet />
+    </nav>
+  )
+}
+
+function Plants(){
+  return (
+    <div>
+      <h2>Plants</h2>
+      <p>Explore our collection of plants.</p>
+      {/* Add plant listing or details here */}
+    </div>
+  )
+}
 
 function App() {
-
-  const categories = [
-    {
-      id: 1,
-      title: 'Plants',
-      imageUrl: 'https://example.com/fruit-trees.jpg',
-    },
-    {
-      id: 2,
-      title: 'Pots',
-      imageUrl: 'https://example.com/pots.jpg',
-    },
-    {
-      id: 3,
-      title: 'Gardening Tools',
-      imageUrl: 'https://example.com/gardening-tools.jpg',
-    },
-    {
-      id: 4,
-      title: 'Soil & Fertilizers',
-      imageUrl: 'https://example.com/soil-fertilizers.jpg',
-    },
-    {
-      id: 5,
-      title: 'Seeds',
-      imageUrl: 'https://example.com/seeds.jpg',
-    }
-  ]
-
   return (
-    <>
-      <Directory categories={categories} />
-    </>
+    <Routes>
+      <Route path="/" element={<Navbar />}>
+        <Route index element={<Home />} />
+        <Route path="plants" element={<Plants />} />
+      </Route>
+    </Routes>
   )
 }
 
