@@ -14,6 +14,7 @@ function Navigation() {
         <ul className='nav-links-container'>
           <Link className='nav-link' to="/">Home</Link>
           <Link className='nav-link' to="/plants">Plants</Link>
+          <Link className='nav-link' to="/sign-in">Sign In</Link>
             {/* Add more navigation links as needed */}
         </ul>
         </nav>
