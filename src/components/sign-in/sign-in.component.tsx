@@ -1,12 +1,17 @@
-import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
+import { signInWithGooglePopup, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 
 
 const SignIn = () => {
 
     const handleSignIn = async () => {
         try {
-            const response = await signInWithGooglePopup();
-            console.log(response);
+
+            //Destructure user from the response
+            const { user } = await signInWithGooglePopup();
+
+            const userDocRef = await createUserDocumentFromAuth(user);
+
+            console.log(user);
             // Handle successful sign-in here (e.g., redirect or show a message)
         } catch (error) {
             console.error("Error signing in with Google:", error);
