@@ -40,10 +40,10 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth(firebaseApp);
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+export const db = getFirestore(firebaseApp);
 
-export const db = getFirestore();
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+//export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const createUserDocumentFromAuth = async (userAuth: User, additionalInformation = {}) => {
     if (!userAuth) return;

@@ -6,7 +6,9 @@ const SignIn = () => {
     const handleSignIn = async () => {
         try {
 
-            //Destructure user from the response
+            // Destructure user from the response
+            // signInWithGooglePopup returns a UserCredential, 
+            // but we need the User object, destructure with {}
             const { user } = await signInWithGooglePopup();
 
             const userDocRef = await createUserDocumentFromAuth(user);
