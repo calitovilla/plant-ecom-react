@@ -3,9 +3,10 @@ import { initializeApp } from "firebase/app";
 
 import { 
     getAuth, 
-    signInWithRedirect, 
+    //signInWithRedirect, 
     signInWithPopup, 
     GoogleAuthProvider, 
+    createUserWithEmailAndPassword,
     type User
 } from "firebase/auth";
 
@@ -63,11 +64,30 @@ export const createUserDocumentFromAuth = async (userAuth: User, additionalInfor
                 email,
                 createdAt,
                 ...additionalInformation
+                // Spread the additional information into the setDoc, 
+                // if additionalInformation contains any fields like displayName, email, etc. it will overwrite them and
+                // If the user document already exists, the fields will be updated with the new values
             });
         } catch (error) {
-            console.error("Error creating the user", error);
+            console.error("Error creating the user document", error);
         }
     }
 
     return userDocRef;
+}
+      
+export const createAuthUserWithEmailAndPassword = async (email: string, password: string) => {
+    if (!email || !password) return;
+
+    try {
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        return user;
+    } catch (error) {
+        if ((error as { code: string }).code === 'auth/email-already-in-use') {
+            alert("Cannot create user, email already in use");
+        }
+        else {
+            console.error("Error creating user with email and password", error);
+        }
+    }
 }
