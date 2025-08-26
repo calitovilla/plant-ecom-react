@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import type { SignUpFormFields } from '../../interfaces';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
+
+import './sign-up-form.styles.scss';
 
 const SignUpForm = () => {
 
@@ -53,14 +57,16 @@ const SignUpForm = () => {
     }
 
   return (
-    <div>
-      <h2>Sign up with your email and password</h2>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Display Name" name='displayName' value={displayName} minLength={4} maxLength={25} onChange={handleChange} required />
-        <input type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required />
-        <input type="password" placeholder="Password" name='password' value={password} onChange={handleChange} minLength={6} maxLength={25} required />
-        <input type="password" placeholder="Confirm Password" name='confirmPassword' value={confirmPassword} onChange={handleChange} minLength={6} maxLength={25} required />
-        <button type="submit">Sign Up</button>
+        <FormInput label="Display Name" type="text" placeholder="Display Name" name='displayName' value={displayName} minLength={4} maxLength={25} onChange={handleChange} required />
+        <FormInput label="Email" type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required />
+        <FormInput label="Password" type="password" placeholder="Password" name='password' value={password} onChange={handleChange} minLength={6} maxLength={25} required />
+        <FormInput label="Confirm Password" type="password" placeholder="Confirm Password" name='confirmPassword' value={confirmPassword} onChange={handleChange} minLength={6} maxLength={25} required />
+
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
