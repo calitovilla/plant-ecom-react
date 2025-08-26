@@ -1,6 +1,6 @@
 import Home from './components/routes/home.component'
 import Navigation from './components/navigation/navigation.component'
-import SignIn from './components/sign-in/sign-in.component'
+import Authentication from './components/authentication/authentication.component'
 import { Routes, Route }from 'react-router'
 import './App.css'
 
@@ -22,7 +22,7 @@ function App() {
       <Route path="/" element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path="plants" element={<Plants />} />
-        <Route path="sign-in" element={<SignIn />} />
+        <Route path="auth" element={<Authentication />} />
       </Route>
     </Routes>
   )

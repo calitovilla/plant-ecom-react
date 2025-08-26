@@ -1,4 +1,6 @@
 
+import './form-input.style.scss'
+
 interface FormInputProps {
     label: string; 
     [key: string]: string | number | boolean | React.ChangeEventHandler<HTMLInputElement> | undefined;
@@ -10,9 +12,9 @@ interface FormInputProps {
 
 const FormInput = ({ label, ...otherProps }: FormInputProps) => {
     return (
-        <div>
-            <label>{label}</label>
-            <input {...otherProps} />
+        <div className='group'>
+            <label className='form-input'>{label}</label>
+            <input className='form-input-label' {...otherProps} />
         </div>
     );
 };

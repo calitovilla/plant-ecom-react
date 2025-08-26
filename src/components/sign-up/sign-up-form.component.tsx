@@ -65,8 +65,9 @@ const SignUpForm = () => {
         <FormInput label="Email" type="email" placeholder="Email" name='email' value={email} onChange={handleChange} required />
         <FormInput label="Password" type="password" placeholder="Password" name='password' value={password} onChange={handleChange} minLength={6} maxLength={25} required />
         <FormInput label="Confirm Password" type="password" placeholder="Confirm Password" name='confirmPassword' value={confirmPassword} onChange={handleChange} minLength={6} maxLength={25} required />
-
-        <Button type="submit">Sign Up</Button>
+        <div className="buttons-container">
+          <Button type="submit">Sign Up</Button>
+        </div>
       </form>
     </div>
   );

@@ -1,0 +1,24 @@
+.group {
+  position: relative;
+
+  .form-input {
+    background: none;
+    background-color: white;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+  }
+
+  input[type='password'] {
+    letter-spacing: 0.3em;
+  }
+
+  .form-input-label {
+    font-size: 16px;
+    font-weight: normal;
+    left: 5px;
+    transition: 300ms ease all;
+  }
+}
