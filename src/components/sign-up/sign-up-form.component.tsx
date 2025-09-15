@@ -1,9 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import type { SignUpFormFields } from '../../interfaces';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
-import { UserContext } from '../../contexts/user.context';
 
 import './sign-up-form.styles.scss';
 
@@ -22,8 +21,6 @@ const SignUpForm = () => {
     // so <input name='displayName' value={displayName} onChange={handleChange} />
     // and when we clear the form, the input values will be reset to the default values
     
-    const { setCurrentUser } = useContext(UserContext);
-
     const clearFormFields = () => {
         setFormFields(defaultFormFields);
     };
@@ -55,7 +52,6 @@ const SignUpForm = () => {
 
             clearFormFields();
 
-            setCurrentUser(user);
         } catch (error) {
             console.error("Error creating user", error);
         }

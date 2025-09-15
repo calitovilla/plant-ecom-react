@@ -7,13 +7,12 @@ import Logo from '../../assets/logo.svg';
 import './navigation.styles.scss'
 
 function Navigation() {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleSignOut = async () => {
     try {
       await signOutUser();
 
-      setCurrentUser(null); 
     } catch (error) {
       console.error("Error signing out:", error);
     }
