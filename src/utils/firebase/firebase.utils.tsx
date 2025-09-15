@@ -8,6 +8,7 @@ import {
     GoogleAuthProvider, 
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    signOut,
     type User
 } from "firebase/auth";
 
@@ -102,4 +103,13 @@ export const signInAuthUserWithEmailAndPassword = async (email: string, password
     } catch (error) {
         console.error("Error signing in user with email and password", error);
     }
+}
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback: (user: User | null) => void) => {
+    // the callback (or function passed to onAuthStateChanged) is executed every time the authentication state changes
+    // onAuthStateChanged returns a cleanup function that can be used to unsubscribe from the listener
+    
+    return auth.onAuthStateChanged(callback);
 }

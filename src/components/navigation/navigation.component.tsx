@@ -1,9 +1,24 @@
 import { Link, Outlet } from 'react-router'
-import { Fragment } from 'react';
+import { Fragment, useContext } from 'react';
+import { UserContext } from '../../contexts/user.context';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
+
 import Logo from '../../assets/logo.svg';
 import './navigation.styles.scss'
 
 function Navigation() {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    try {
+      await signOutUser();
+
+      setCurrentUser(null); 
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   return (
     <Fragment>
         <nav className='navigation'>
@@ -14,8 +29,15 @@ function Navigation() {
         <ul className='nav-links-container'>
           <Link className='nav-link' to="/">Home</Link>
           <Link className='nav-link' to="/plants">Plants</Link>
-          <Link className='nav-link' to="/auth">Sign In</Link>
-            {/* Add more navigation links as needed */}
+
+          { currentUser ? (
+            <span className='nav-link' onClick={handleSignOut}>Sign Out</span>
+            //logout functionality can be added here
+          ) : (
+            <Link className='nav-link' to="/auth">Sign In</Link>
+          )}
+
+          {/* Add more navigation links as needed */}
         </ul>
         </nav>
         <Outlet /> {/* Outlet renders the matched child route component here */}

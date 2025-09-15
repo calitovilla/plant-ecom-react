@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import { UserContext } from '../../contexts/user.context';
 import type { SignInFormFields } from "../../interfaces";
 import { signInAuthUserWithEmailAndPassword, createUserDocumentFromAuth, signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 
@@ -18,6 +19,8 @@ const SignInForm = () => {
     // Destructure form fields, with this we can link the input values because we can use the same names as the state properties
     // so <input name='displayName' value={displayName} onChange={handleChange} />
     // and when we clear the form, the input values will be reset to the default values
+
+    const { setCurrentUser } = useContext(UserContext);
 
     const clearFormFields = () => {
         setFormFields(defaultFormFields);
@@ -44,6 +47,10 @@ const SignInForm = () => {
 
             await createUserDocumentFromAuth(user);
 
+            clearFormFields();
+
+            setCurrentUser(user);
+
         } catch (error) {
             console.error("Error signing in with email and password:", error);
         }
@@ -59,6 +66,8 @@ const SignInForm = () => {
 
             const userDocRef = await createUserDocumentFromAuth(user);
 
+            setCurrentUser(user);
+            
             console.log(user);
             // Handle successful sign-in here (e.g., redirect or show a message)
         } catch (error) {
