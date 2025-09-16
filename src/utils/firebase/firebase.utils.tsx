@@ -108,8 +108,11 @@ export const signInAuthUserWithEmailAndPassword = async (email: string, password
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback: (user: User | null) => void) => {
+    // (callback: (user: User | null) => void) means that the callback function takes a User or null as an argument and returns void (nothing)
+    // Important: when we use onAuthStateChangedListener, we pass a callback function that will have a user or null as an argument
+
     // the callback (or function passed to onAuthStateChanged) is executed every time the authentication state changes
     // onAuthStateChanged returns a cleanup function that can be used to unsubscribe from the listener
-    
+    // onAuthStateChanged that recieves a callback function nextOrObserver: NextOrObserver<User | null> 
     return auth.onAuthStateChanged(callback);
 }
